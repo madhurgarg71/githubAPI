@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Anaheim|Quicksand:400,700" rel="stylesheet">
+<link rel="stylesheet" href="css/screen.css" />
+  </head>
+  <body>
+    <div>
+      <h3 style="text-align:center;"><a href="" style="text-decoration:none;">Search github</a></h3>
+    </div>
+    <div class="container">
+
+      <div class="input-group search-box">
+       <input type="text" class="form-control" id="searchBy" placeholder="Search for...">
+       <span class="input-group-btn">
+         <button class="btn btn-success" id="searchBtn" type="button" onclick="getRepo()">Search</button>
+       </span>
+     </div>
+     <div class="">
+       <a href="#users" onclick="displayRepo()"><h4 class="totalcount">Users = <span id="userCount">0</span></h4></a>
+       <a href="#repos" onclick="displayUsers()"><h4 class="totalcount">Repositories = <span id="repoCount">0</span></h4></a>
+     </div>
+
+     <div class="content">
+        <table class="table table-hover" id="content-table">
+
+        </table>
+     </div>
+
+  </div>
+
+    <script src="js/getRepo.js" charset="utf-8"></script>
+    <script src="js/getUser.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
