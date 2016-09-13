@@ -21,12 +21,12 @@
       <div class="input-group search-box">
        <input type="text" class="form-control" id="searchBy" placeholder="Search for...">
        <span class="input-group-btn">
-         <button class="btn btn-success" id="searchBtn" type="button" onclick="app.displayRepos()">Search</button>
+         <button class="btn btn-success" id="searchBtn" type="button" onclick="app.search()">Search</button>
        </span>
      </div>
      <div class="">
-       <a href="#users" onclick="displayRepo()"><h4 class="totalcount">Users = <span id="userCount">0</span></h4></a>
-       <a href="#repos" onclick="displayUsers()"><h4 class="totalcount">Repositories = <span id="repoCount">0</span></h4></a>
+       <a href="#/users" onclick="app.displayUsers()"><h4 class="totalcount">Users = <span id="usersCount">0</span></h4></a>
+       <a href="#/repos" onclick="app.displayRepos()"><h4 class="totalcount">Repositories = <span id="reposCount">0</span></h4></a>
      </div>
 
      <div class="content">
@@ -41,5 +41,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+    var app = init()
+    </script>
   </body>
 </html>
