@@ -66,7 +66,7 @@ function init () {
       var self = this
       this.content.innerHTML = ''
       this.reposData.items.forEach(function (repo) {
-        var repoNameStr = '<a ' + 'id=' + repo.id + ' href=/#/repos' +  repo.id + 'issues/' + ' onClick="app.getIssues(\'' + repo.full_name + '\')">'
+        var repoNameStr = '<a ' + 'id=' + repo.id + ' href=/#/repos/' + repo.id + '/issues/' + ' onClick="app.getIssues(\'' + repo.full_name + '\')">'
         self.content.innerHTML += '<tr><td>' + repoNameStr + '<h4>' + repo.owner.login + '/' + repo.name + '</h4>' + '</a>' + '</td></tr>'
       })
     },
@@ -76,22 +76,24 @@ function init () {
       this.usersData.items.forEach(function (user) {
         var userNameStr = '<a ' + 'id=' + user.login + ' href=/#/users/' + user.login + '/repos/' + ' onClick="app.getUserRepos(\'' + user.login + '\')">'
         self.content.innerHTML += '<tr><td>' + '<img width=50 height=50 src=' +
-         user.avatar_url + '>' + ' ' + '<span>' + userNameStr + user.login + '</a>' + '</span>' + '</td></tr>'
+         user.avatar_url + '>' + ' ' + '<span class="span-font-size">' + userNameStr + user.login + '</a>' + '</span>' + '</td></tr>'
       })
     },
     displayIssues: function () {
       var self = this
       this.content.innerHTML = ''
+      this.content.innerHTML = '<h3>Open Issues</h3>'
       this.issuesData.forEach(function (issue) {
-        self.content.innerHTML += '<tr><td>' + '<h4>' + '<span class="open">' + issue.state + '</span>' + ' ' + issue.title + ' ' + '</h4>' + '</td></tr>'
+        self.content.innerHTML += '<tr><td>' + '<h4>' + '<span class="open">' +
+         issue.state + '</span>' + ' ' + issue.title + '</h4>' + '</td></tr>'
       })
     },
     displayUserRepos: function () {
       var self = this
-      console.log(this.userReposData);
       this.content.innerHTML = ''
+      this.content.innerHTML = '<h3>' + this.userReposData[0].owner.login + "'s" + ' repositories</h3>'
       this.userReposData.forEach(function (userRepo) {
-        self.content.innerHTML += '<tr><td>' + '<h4>' + userRepo.full_name + '</h4>' + '</td></tr>'
+          self.content.innerHTML += '<tr><td>' + '<h4>' + userRepo.name + '</h4>' + '</td></tr>'
       })
     }
   }
