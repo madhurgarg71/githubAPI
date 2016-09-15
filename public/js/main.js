@@ -46,6 +46,25 @@ function init () {
         self.displayUserRepos()
       })
     },
+    getFilteredIssues: function (query, CB) {
+      // var uri = 'https://api.github.com/repos/angular/angular/labels' + query
+      // this.createRequest(uri, function (data) {
+      //   CB(data)
+      // })
+      var data = this.issuesData.filter(function (issue, i, arr) {
+        return issue.labels.map(function (label, i, arr) {
+          return label.name
+        }).indexOf(query) !== -1
+      })
+
+      CB(data)
+      // this.issuesData.filter(function (issue) {
+      //   return query
+      // })
+      // var labelsArray = this.issuesData.map(function (issue) {
+      //   return issue.labels
+      // })
+    },
     search: function () {
       var query = document.getElementById('searchBy').value
       var self = this
@@ -66,7 +85,7 @@ function init () {
       var self = this
       this.content.innerHTML = ''
       this.reposData.items.forEach(function (repo) {
-        var repoNameStr = '<a ' + 'id=' + repo.id + ' href=/#/repos/' + repo.id + '/issues/' + ' onClick="app.getIssues(\'' + repo.full_name + '\')">'
+        var repoNameStr = '<a ' + 'id=' + repo.id + ' href=/#/repos/' + repo.full_name + '/issues/' + ' onClick="app.getIssues(\'' + repo.full_name + '\')">'
         self.content.innerHTML += '<tr><td>' + repoNameStr + '<h4>' + repo.owner.login + '/' + repo.name + '</h4>' + '</a>' + '</td></tr>'
       })
     },
@@ -84,8 +103,14 @@ function init () {
       this.content.innerHTML = ''
       this.content.innerHTML = '<h3>Open Issues</h3>'
       this.issuesData.forEach(function (issue) {
+        // console.log(issue.number)
         self.content.innerHTML += '<tr><td>' + '<h4>' + '<span class="open">' +
-         issue.state + '</span>' + ' ' + issue.title + '</h4>' + '</td></tr>'
+         issue.state + '</span>' + ' ' + issue.title + '</h4>' + ' '
+        issue.labels.forEach(function (label) {
+          var c_uri = window.location.href
+          self.content.innerHTML += '<a href=' + '"' + c_uri + 'tags/' + label.name +
+           '"' + ' onClick="app.filterIssues(\'' + label.name + '\')"' + ' style="color:#000000">' + '<span style="background-color:#' + label.color + '"' + '>' + label.name + '</span>' + ' ' + '</a>' + '</td></tr>'
+        })
       })
     },
     displayUserRepos: function () {
@@ -94,6 +119,13 @@ function init () {
       this.content.innerHTML = '<h3>' + this.userReposData[0].owner.login + "'s" + ' repositories</h3>'
       this.userReposData.forEach(function (userRepo) {
           self.content.innerHTML += '<tr><td>' + '<h4>' + userRepo.name + '</h4>' + '</td></tr>'
+      })
+    },
+    filterIssues: function (tag) {
+      var self = this
+      this.getFilteredIssues(tag, function (data) {
+        self.issuesData = data
+        self.displayIssues()
       })
     }
   }
